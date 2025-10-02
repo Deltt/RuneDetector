@@ -1,26 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const startButton = document.getElementById("start-button");
-  const startOverlay = document.getElementById("start-overlay");
-  const scene = document.getElementById("ar-scene");
+  const overlay = document.getElementById("start-overlay");
+  const button = document.getElementById("start-button");
 
-  startButton.addEventListener("click", () => {
+  button.addEventListener("click", () => {
     // Hide overlay
-    startOverlay.style.display = "none";
+    overlay.style.display = "none";
 
-    // AR.js will automatically request camera permission
+    // Wait until AR.js is ready
+    const scene = document.getElementById("ar-scene");
     const checkAR = setInterval(() => {
       const arSource = scene.components["arjs"]?.arSource;
       if (arSource && arSource.ready) {
         clearInterval(checkAR);
-        console.log("✅ AR.js camera initialized.");
+        console.log("✅ AR.js camera ready");
 
         const marker = document.querySelector("a-marker");
-        const model = document.getElementById("model");
+        const model = document.querySelector("a-entity[gltf-model]");
 
-        // Log events
         marker.addEventListener("markerFound", () => console.log("🔎 Marker detected!"));
         marker.addEventListener("markerLost", () => console.log("❌ Marker lost."));
-        model.addEventListener("model-loaded", () => console.log("✅ 3D model loaded!"));
+        model.addEventListener("model-loaded", () => console.log("✅ Model loaded"));
       }
     }, 100);
   });

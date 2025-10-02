@@ -3,23 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Mobile AR Marker App</title>
+  <title>Mobile AR Chrome Test</title>
   <link rel="stylesheet" href="styles.css">
 
-  <!-- A-Frame -->
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  <!-- AR.js -->
   <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/3.3.2/aframe/build/aframe-ar.js"></script>
-  <!-- Custom scripts -->
   <script src="scripts.js" defer></script>
 </head>
 <body>
-  <!-- Start overlay -->
+  <!-- Overlay with Start button -->
   <div id="start-overlay">
     <button id="start-button">Start</button>
   </div>
 
-  <!-- AR scene (always visible) -->
   <a-scene
       id="ar-scene"
       embedded
@@ -27,18 +23,10 @@
       vr-mode-ui="enabled: false"
       renderer="logarithmicDepthBuffer: true;"
   >
-    <!-- Marker -->
     <a-marker type="pattern" url="assets/marker.patt">
-      <a-entity 
-        id="model"
-        gltf-model="url(assets/male_1.glb)" 
-        scale="0.5 0.5 0.5" 
-        rotation="0 0 0"
-        position="0 0 0">
-      </a-entity>
+      <a-entity gltf-model="url(assets/male_1.glb)" scale="0.5 0.5 0.5"></a-entity>
     </a-marker>
 
-    <!-- Camera -->
     <a-entity camera></a-entity>
   </a-scene>
 </body>
