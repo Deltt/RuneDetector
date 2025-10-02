@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,15 +9,15 @@
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
 </head>
+
 <body>
     <p id="status">Point camera at marker</p>
 
-    <a-scene
-        embedded
-        vr-mode-ui="enabled: false"
-        renderer="alpha: true"
-        arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
-        id="arScene">
+    <a-scene embedded vr-mode-ui="enabled: false" renderer="alpha: true" arjs="trackingMethod: best;
+          sourceType: webcam;
+          sourceWidth: 1280;
+          sourceHeight: 960;
+          debugUIEnabled: false;" id="arScene">
 
         <a-marker type="pattern" url="./assets/marker.patt" id="marker">
             <a-box position="0 0.5 0" material="color: red;"></a-box>
@@ -27,4 +28,5 @@
 
     <script src="scripts.js"></script>
 </body>
+
 </html>
