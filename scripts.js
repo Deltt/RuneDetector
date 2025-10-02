@@ -3,23 +3,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const startOverlay = document.getElementById("start-overlay");
   const scene = document.getElementById("ar-scene");
 
-  startButton.addEventListener("click", async () => {
-    try {
-      // Request camera permission
-      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
-      // If permission granted, hide overlay and show scene
-      startOverlay.style.display = "none";
-      scene.style.display = "block";
+startButton.addEventListener("click", () => {
+  startOverlay.style.display = "none";
+  scene.style.display = "block";
 
-      // Set the video stream for AR.js
-      const arSource = scene.components["arjs"].arSource;
-      arSource.domElement.srcObject = stream;
+  // Let AR.js handle camera initialization
+  const arScene = scene;
+  if (arScene.components['arjs'] && arScene.components['arjs'].arSource) {
+    arScene.components['arjs'].arSource.init(() => {
+      console.log("✅ AR.js camera initialized.");
+    });
+  }
+});
 
-    } catch (err) {
-      alert("Camera access denied or unavailable. Please allow camera permissions.");
-      console.error(err);
-    }
-  });
 
   // Optional: Log when model is loaded
   const model = document.getElementById("model");
@@ -32,3 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   marker.addEventListener("markerFound", () => console.log("🔎 Marker detected!"));
   marker.addEventListener("markerLost", () => console.log("❌ Marker lost."));
 });
+
+if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+  alert("Camera API not supported by this browser.");
+}
