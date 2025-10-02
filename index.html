@@ -11,23 +11,26 @@
 
 <body>
     <div class="container">
-        <h1>AR Marker Scanner</h1>
-        <p id="status">Camera not started</p>
-        <video id="cameraPreview" autoplay playsinline></video>
-        <button id="startCameraBtn">Start Camera</button>
-    </div>
+    <h1>AR Marker Scanner</h1>
+    <p id="status">Camera not started</p>
+    <button id="startCameraBtn">Start Camera</button>
+</div>
 
-    <!-- AR.js scene -->
-    <a-scene vr-mode-ui="enabled: false" embedded
-        arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+<a-scene
+    id="arScene"
+    embedded
+    vr-mode-ui="enabled: false"
+    renderer="alpha: true;"
+    arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
+    style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; display:none;">
 
-        <a-marker id="arMarker" type="pattern" url="./assets/marker.patt">
-            <!-- Placeholder 3D object -->
-            <a-box position="0 0.5 0" material="color: red;"></a-box>
-        </a-marker>
+    <a-marker id="arMarker" type="pattern" url="./assets/marker.patt">
+        <a-box position="0 0.5 0" material="color: red;"></a-box>
+    </a-marker>
 
-        <a-entity camera></a-entity>
-    </a-scene>
+    <a-entity camera></a-entity>
+</a-scene>
+
 
     <script src="scripts.js"></script>
 </body>

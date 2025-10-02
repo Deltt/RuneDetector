@@ -1,37 +1,20 @@
-const startCameraBtn = document.getElementById('startCameraBtn');
-const cameraPreview = document.getElementById('cameraPreview');
-const statusText = document.getElementById('status');
+const startBtn = document.getElementById('startCameraBtn');
+const status = document.getElementById('status');
+const arScene = document.getElementById('arScene');
+const marker = document.getElementById('arMarker');
 
-async function startCamera() {
-    statusText.textContent = 'Requesting camera permission...';
-    startCameraBtn.disabled = true;
+startBtn.addEventListener('click', () => {
+    arScene.style.display = 'block';
+    status.textContent = 'Camera started';
+    startBtn.style.display = 'none';
+});
 
-    try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-        cameraPreview.srcObject = stream;
-        statusText.textContent = 'Camera started';
-    } catch (err) {
-        console.error('Error accessing camera:', err);
-        statusText.textContent = 'Camera access denied or unavailable';
-        startCameraBtn.disabled = false;
-    }
-}
+marker.addEventListener('markerFound', () => {
+    status.textContent = 'Marker detected!';
+    status.style.color = 'green';
+});
 
-startCameraBtn.addEventListener('click', startCamera);
-
-// --- Marker feedback ---
-document.addEventListener('DOMContentLoaded', () => {
-    const marker = document.querySelector('#arMarker');
-
-    if (!marker) return;
-
-    marker.addEventListener('markerFound', () => {
-        statusText.textContent = 'Marker detected!';
-        statusText.style.color = 'green';
-    });
-
-    marker.addEventListener('markerLost', () => {
-        statusText.textContent = 'Marker lost';
-        statusText.style.color = '#555';
-    });
+marker.addEventListener('markerLost', () => {
+    status.textContent = 'Marker lost';
+    status.style.color = '#555';
 });
