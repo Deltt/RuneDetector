@@ -7,12 +7,16 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <video id="cameraPreview" autoplay playsinline></video>
-    <div class="overlay">
+    <header>
         <h1>AR Marker Scanner</h1>
-        <p id="status">Camera not started</p>
+    </header>
+
+    <div class="main">
         <button id="startCameraBtn">Start Camera</button>
+        <video id="cameraPreview" autoplay playsinline></video>
+        <p id="status">Camera not started</p>
     </div>
+
     <script src="scripts.js"></script>
 </body>
 </html>
