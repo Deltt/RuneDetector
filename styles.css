@@ -7,7 +7,7 @@ html, body {
   font-family: sans-serif;
 }
 
-/* Start overlay */
+/* Start overlay: on top of scene */
 #start-overlay {
   position: fixed;
   top: 0;
