@@ -1,10 +1,12 @@
-const status = document.getElementById('status');
+const feedback = document.getElementById('feedback');
 const marker = document.getElementById('marker');
 
 marker.addEventListener('markerFound', () => {
-    status.textContent = 'Marker detected!';
+    feedback.textContent = 'Marker detected!';
+    feedback.style.color = 'green';
 });
 
 marker.addEventListener('markerLost', () => {
-    status.textContent = 'Point camera at marker';
+    feedback.textContent = 'Point camera at marker';
+    feedback.style.color = '#fff';
 });
