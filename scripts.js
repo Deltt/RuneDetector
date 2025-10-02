@@ -1,26 +1,20 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const overlay = document.getElementById("start-overlay");
-  const button = document.getElementById("start-button");
+const startCameraBtn = document.getElementById('startCameraBtn');
+const cameraPreview = document.getElementById('cameraPreview');
+const statusText = document.getElementById('status');
 
-  button.addEventListener("click", () => {
-    // Hide overlay
-    overlay.style.display = "none";
+async function startCamera() {
+    statusText.textContent = 'Requesting camera permission...';
+    startCameraBtn.disabled = true;
 
-    // Wait until AR.js is ready
-    const scene = document.getElementById("ar-scene");
-    const checkAR = setInterval(() => {
-      const arSource = scene.components["arjs"]?.arSource;
-      if (arSource && arSource.ready) {
-        clearInterval(checkAR);
-        console.log("✅ AR.js camera ready");
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+        cameraPreview.srcObject = stream;
+        statusText.textContent = 'Camera started';
+    } catch (err) {
+        console.error('Error accessing camera:', err);
+        statusText.textContent = 'Camera access denied or unavailable';
+        startCameraBtn.disabled = false;
+    }
+}
 
-        const marker = document.querySelector("a-marker");
-        const model = document.querySelector("a-entity[gltf-model]");
-
-        marker.addEventListener("markerFound", () => console.log("🔎 Marker detected!"));
-        marker.addEventListener("markerLost", () => console.log("❌ Marker lost."));
-        model.addEventListener("model-loaded", () => console.log("✅ Model loaded"));
-      }
-    }, 100);
-  });
-});
+startCameraBtn.addEventListener('click', startCamera);

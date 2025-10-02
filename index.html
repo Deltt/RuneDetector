@@ -1,33 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Mobile AR Chrome Test</title>
-  <link rel="stylesheet" href="styles.css">
-
-  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/3.3.2/aframe/build/aframe-ar.js"></script>
-  <script src="scripts.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Marker Scanner</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Overlay with Start button -->
-  <div id="start-overlay">
-    <button id="start-button">Start</button>
-  </div>
-
-  <a-scene
-      id="ar-scene"
-      embedded
-      arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
-      vr-mode-ui="enabled: false"
-      renderer="logarithmicDepthBuffer: true;"
-  >
-    <a-marker type="pattern" url="assets/marker.patt">
-      <a-entity gltf-model="url(assets/male_1.glb)" scale="0.5 0.5 0.5"></a-entity>
-    </a-marker>
-
-    <a-entity camera></a-entity>
-  </a-scene>
+    <div class="container">
+        <h1>AR Marker Scanner</h1>
+        <p id="status">Camera not started</p>
+        <video id="cameraPreview" autoplay playsinline></video>
+        <button id="startCameraBtn">Start Camera</button>
+    </div>
+    <script src="scripts.js"></script>
 </body>
 </html>
