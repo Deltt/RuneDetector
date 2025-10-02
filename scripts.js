@@ -9,9 +9,7 @@ async function startCamera() {
     try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
         cameraPreview.srcObject = stream;
-        cameraPreview.style.display = 'block'; // show video
-        startCameraBtn.style.display = 'none'; // hide button
-        statusText.textContent = '';
+        statusText.textContent = 'Camera started';
     } catch (err) {
         console.error('Error accessing camera:', err);
         statusText.textContent = 'Camera access denied or unavailable';
