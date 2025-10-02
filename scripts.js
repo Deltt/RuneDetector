@@ -16,14 +16,3 @@ async function startCamera() {
 window.addEventListener('load', () => {
     startCamera();
 });
-
-document.getElementById('start-btn').addEventListener('click', async () => {
-    try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
-        document.getElementById('camera').srcObject = stream;
-        document.getElementById('start-btn').style.display = 'none';
-    } catch (err) {
-        alert("Camera access denied or not available.");
-        console.error(err);
-    }
-});
