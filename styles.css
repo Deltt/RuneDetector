@@ -1,23 +1,13 @@
 html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background-color: black;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  background: black;
 }
 
-#camera-container {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: rotate(0deg); /* we’ll rotate if needed */
-}
-
-#camera {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* maintain aspect ratio and fill screen */
+a-scene {
+  height: 100%;
+  width: 100%;
 }

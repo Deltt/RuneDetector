@@ -1,18 +1,17 @@
-const video = document.getElementById('camera');
+// Example: hook into model load or marker events
+document.addEventListener("DOMContentLoaded", () => {
+  const model = document.getElementById("model");
 
-async function startCamera() {
-    try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-            video: { facingMode: "environment" }, // back camera
-            audio: false
-        });
-        video.srcObject = stream;
-    } catch (err) {
-        console.error("Error accessing camera: ", err);
-        alert("Camera access denied or not available.");
-    }
-}
+  model.addEventListener("model-loaded", () => {
+    console.log("✅ 3D model loaded successfully!");
+  });
 
-window.addEventListener('load', () => {
-    startCamera();
+  // Detect when marker is visible
+  document.querySelector("a-marker").addEventListener("markerFound", () => {
+    console.log("🔎 Marker found!");
+  });
+
+  document.querySelector("a-marker").addEventListener("markerLost", () => {
+    console.log("❌ Marker lost!");
+  });
 });

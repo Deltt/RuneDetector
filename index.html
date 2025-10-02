@@ -1,16 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Mobile AR Camera Test</title>
+<html>
+  <head>
+    <title>AR Marker Test</title>
     <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div id="camera-container">
-        <video id="camera" autoplay playsinline></video>
-    </div>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/3.3.2/aframe/build/aframe-ar.js"></script>
+    <script src="scripts.js" defer></script>
+  </head>
+  <body>
+    <a-scene
+      embedded
+      arjs="sourceType: webcam; debugUIEnabled: false;"
+      vr-mode-ui="enabled: false"
+      renderer="logarithmicDepthBuffer: true;"
+    >
+      <!-- Marker -->
+      <a-marker type="pattern" url="assets/marker.patt">
+        <!-- 3D Model -->
+        <a-entity 
+          id="model"
+          gltf-model="url(assets/model.glb)" 
+          scale="0.5 0.5 0.5" 
+          rotation="0 0 0"
+          position="0 0 0">
+        </a-entity>
+      </a-marker>
 
-    <script src="scripts.js"></script>
-</body>
+      <!-- Required camera -->
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
 </html>
