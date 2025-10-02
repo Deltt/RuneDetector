@@ -14,19 +14,18 @@
   <script src="scripts.js" defer></script>
 </head>
 <body>
-  <!-- Start button overlay -->
+  <!-- Start overlay -->
   <div id="start-overlay">
     <button id="start-button">Start</button>
   </div>
 
-  <!-- A-Frame scene -->
-  <a-scene 
+  <!-- AR scene (always visible) -->
+  <a-scene
       id="ar-scene"
       embedded
       arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
       vr-mode-ui="enabled: false"
       renderer="logarithmicDepthBuffer: true;"
-      style="display: none;"
   >
     <!-- Marker -->
     <a-marker type="pattern" url="assets/marker.patt">
