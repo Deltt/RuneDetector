@@ -18,3 +18,20 @@ async function startCamera() {
 }
 
 startCameraBtn.addEventListener('click', startCamera);
+
+// --- Marker feedback ---
+document.addEventListener('DOMContentLoaded', () => {
+    const marker = document.querySelector('#arMarker');
+
+    if (!marker) return;
+
+    marker.addEventListener('markerFound', () => {
+        statusText.textContent = 'Marker detected!';
+        statusText.style.color = 'green';
+    });
+
+    marker.addEventListener('markerLost', () => {
+        statusText.textContent = 'Marker lost';
+        statusText.style.color = '#555';
+    });
+});

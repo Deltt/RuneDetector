@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
 </head>
+
 <body>
     <div class="container">
         <h1>AR Marker Scanner</h1>
@@ -15,22 +17,19 @@
         <button id="startCameraBtn">Start Camera</button>
     </div>
 
-    <!-- AR.js A-Frame scene -->
-    <a-scene 
-        vr-mode-ui="enabled: false" 
-        embedded 
+    <!-- AR.js scene -->
+    <a-scene vr-mode-ui="enabled: false" embedded
         arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
-        
-        <!-- Marker -->
-        <a-marker type="pattern" url="assets/marker.patt">
-            <!-- 3D object placeholder, e.g., a box -->
+
+        <a-marker id="arMarker" type="pattern" url="./assets/marker.patt">
+            <!-- Placeholder 3D object -->
             <a-box position="0 0.5 0" material="color: red;"></a-box>
         </a-marker>
 
-        <!-- Camera -->
         <a-entity camera></a-entity>
     </a-scene>
 
     <script src="scripts.js"></script>
 </body>
+
 </html>
